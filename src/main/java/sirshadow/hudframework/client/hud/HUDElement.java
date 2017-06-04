@@ -13,6 +13,7 @@ public class HUDElement {
     public String name;
     public final int xSize;
     public final int ySize;
+    private boolean locked = false;
 
     public static int zLevel = 0;
 
@@ -30,8 +31,32 @@ public class HUDElement {
      * If you leave this empty the HUD will not render
      * @param mc Minecraft object
      **/
-    public void renderHUD(Minecraft mc)
-    {
+    public void renderHUD(Minecraft mc) {}
+
+    /**
+     * Not client side
+     * Runs every tick
+     */
+    public void update(){}
+
+    /**
+     * If returns true the HUD element will not be able to change pos
+     * @return
+     */
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    /**
+     * Set this to true if you want the element to update
+     * @return
+     */
+    public boolean shouldUpdate(){
+        return false;
     }
 
     /**

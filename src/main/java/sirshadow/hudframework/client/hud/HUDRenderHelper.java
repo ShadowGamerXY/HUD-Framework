@@ -29,6 +29,18 @@ public class HUDRenderHelper
         return true;
     }
 
+    public static boolean updateHUDElements()
+    {
+        for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
+        {
+            if (entry.getValue().shouldUpdate()) {
+                entry.getValue().update();
+            }
+        }
+
+        return true;
+    }
+
 
     /**
      * Used mostly for GuiHUD
