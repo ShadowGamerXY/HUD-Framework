@@ -1,0 +1,16 @@
+[
+{
+  "modid": "hf",
+  "name": "HUD Framework",
+  "description": "This mod adds an universal way to add different types of HUDs to your mod..",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["SirShadow"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
