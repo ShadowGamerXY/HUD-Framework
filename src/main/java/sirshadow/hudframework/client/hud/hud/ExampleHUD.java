@@ -5,6 +5,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
+import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 import sirshadow.hudframework.ConfigurationHandler;
 import sirshadow.hudframework.ModLibrary;
@@ -74,6 +75,16 @@ public class ExampleHUD extends HUDElement implements IComponentHoveringText,ICo
     public void resetToDefaultPosition() {
         this.xPos = this.defaultX;
         this.yPos = this.defaultY;
+    }
+
+    @Override
+    public boolean shouldUpdate() {
+        return true;
+    }
+
+    @Override
+    public void update() {
+        setLocked(ConfigurationHandler.locked);
     }
 
     @Override
