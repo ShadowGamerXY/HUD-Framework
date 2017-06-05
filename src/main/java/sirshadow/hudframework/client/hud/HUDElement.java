@@ -13,9 +13,16 @@ public class HUDElement {
     public String name;
     public final int xSize;
     public final int ySize;
+    private boolean locked = false;
 
     public static int zLevel = 0;
-
+    /**
+     * @param name The name of the HUD
+     * @param x The starting xPos of the HUD, it will change when you move the HUD(but it resets if you don't save it eg. in the configs)
+     * @param y The starting yPos of the HUD, it will change when you move the HUD(but it resets if you don't save it eg. in the configs)
+     * @param xWidth width of the HUD, used to calculate the mouse over
+     * @param yWidth height of the HUD, used to calculate the mouse over
+     */
     public HUDElement(String name,float x, float y, int xWidth, int yWidth)
     {
         this.name = name;
@@ -30,8 +37,32 @@ public class HUDElement {
      * If you leave this empty the HUD will not render
      * @param mc Minecraft object
      **/
-    public void renderHUD(Minecraft mc)
-    {
+    public void renderHUD(Minecraft mc) {}
+
+    /**
+     * Not client side
+     * Runs every tick
+     */
+    public void update(){}
+
+    /**
+     * If it returns true it element cannot change it's position via GuiHUD
+     * @return if the HUD element is locked
+     */
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    /**
+     * Set this to true if you want the element to update
+     * @return if the element should update
+     */
+    public boolean shouldUpdate(){
+        return false;
     }
 
     /**
@@ -44,7 +75,7 @@ public class HUDElement {
     /**
      * If you set this to false the HUD will not render
      * @param mc
-     * @return
+     * @return if the hud should be rendered
      */
     public boolean shouldRenderHUD(Minecraft mc)
     {

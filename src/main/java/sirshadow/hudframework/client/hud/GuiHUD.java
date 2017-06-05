@@ -65,13 +65,15 @@ public class GuiHUD extends GuiContainer {
     @Override
     protected void mouseClickMove(int mouseX, int mouseY, int lastButtonClicked, long timeSinceMouseClicked) {
         if (lastButtonClicked == 0 && isElementTrapped && trappedElement != null) {
-            ScaledResolution scaled = new ScaledResolution(mc);
-            trappedElement.xPos = ((float) (mouseX - lastMouseX)) / (float) scaled.getScaledWidth() + trappedElement.xPos;
-            trappedElement.yPos = ((float) (mouseY - lastMouseY)) / (float) scaled.getScaledHeight() + trappedElement.yPos;
-            lastMouseX = mouseX;
-            lastMouseY = mouseY;
+            if (!trappedElement.isLocked()) {
+                ScaledResolution scaled = new ScaledResolution(mc);
+                trappedElement.xPos = ((float) (mouseX - lastMouseX)) / (float) scaled.getScaledWidth() + trappedElement.xPos;
+                trappedElement.yPos = ((float) (mouseY - lastMouseY)) / (float) scaled.getScaledHeight() + trappedElement.yPos;
+                lastMouseX = mouseX;
+                lastMouseY = mouseY;
 
-            trappedElement.onPositionChange();
+                trappedElement.onPositionChange();
+            }
         }
     }
 

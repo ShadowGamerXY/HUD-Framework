@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import sirshadow.hudframework.ConfigurationHandler;
+import sirshadow.hudframework.EventHandler;
 import sirshadow.hudframework.HudFramework;
 import sirshadow.hudframework.client.GuiHandler;
 
@@ -45,5 +46,6 @@ public class CommonProxy implements IProxy {
 
     public void registerEvents(){
         MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 }

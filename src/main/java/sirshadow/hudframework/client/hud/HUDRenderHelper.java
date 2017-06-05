@@ -17,12 +17,35 @@ public class HUDRenderHelper
     public static Map<String, HUDElement> hudElementsMap = new HashMap<String, HUDElement>();
     public static Minecraft mc = Minecraft.getMinecraft();
 
+    /**
+     * Call this when you want the HUD to render
+     * It's called every render tick
+     * @param mc minecft object
+     * @return true
+     */
     public static boolean renderHUDElements(Minecraft mc)
     {
         for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
         {
             if (entry.getValue().shouldRenderHUD(mc)) {
                 entry.getValue().renderHUD(mc);
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Call this when you want the HUD to update
+     * It's called every update tick
+     * @return true
+     */
+    public static boolean updateHUDElements()
+    {
+        for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
+        {
+            if (entry.getValue().shouldUpdate()) {
+                entry.getValue().update();
             }
         }
 
