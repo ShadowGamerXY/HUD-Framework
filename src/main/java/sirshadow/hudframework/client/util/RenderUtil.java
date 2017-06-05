@@ -18,8 +18,8 @@ public class RenderUtil {
     /**
      *
      * @param o an object that can be turned into a String. If the object CAN'T be turned into a string it will crash/cause problems
-     * @param x
-     * @param y
+     * @param x xPos
+     * @param y yPos
      * @param c set the color of the string
      */
     public static void addObject(Object o, int x, int y, Color c){

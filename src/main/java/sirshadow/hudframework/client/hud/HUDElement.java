@@ -16,7 +16,13 @@ public class HUDElement {
     private boolean locked = false;
 
     public static int zLevel = 0;
-
+    /**
+     * @param name The name of the HUD
+     * @param x The starting xPos of the HUD, it will change when you move the HUD(but it resets if you don't save it eg. in the configs)
+     * @param y The starting yPos of the HUD, it will change when you move the HUD(but it resets if you don't save it eg. in the configs)
+     * @param xWidth width of the HUD, used to calculate the mouse over
+     * @param yWidth height of the HUD, used to calculate the mouse over
+     */
     public HUDElement(String name,float x, float y, int xWidth, int yWidth)
     {
         this.name = name;
