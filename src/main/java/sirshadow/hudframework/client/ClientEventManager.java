@@ -23,6 +23,8 @@ public class ClientEventManager {
             return;
         }else if ((mc.inGameHasFocus || mc.currentScreen == null) && !mc.gameSettings.showDebugInfo)
         {
+
+
             if (!HUDRenderHelper.renderHUDElements(mc))
             {
                 return;
