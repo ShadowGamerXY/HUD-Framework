@@ -40,8 +40,8 @@ public class HUDElement {
     public void update(){}
 
     /**
-     * If returns true the HUD element will not be able to change pos
-     * @return
+     * If it returns true it element cannot change it's position via GuiHUD
+     * @return if the HUD element is locked
      */
     public boolean isLocked() {
         return locked;
@@ -53,7 +53,7 @@ public class HUDElement {
 
     /**
      * Set this to true if you want the element to update
-     * @return
+     * @return if the element should update
      */
     public boolean shouldUpdate(){
         return false;
@@ -69,7 +69,7 @@ public class HUDElement {
     /**
      * If you set this to false the HUD will not render
      * @param mc
-     * @return
+     * @return if the hud should be rendered
      */
     public boolean shouldRenderHUD(Minecraft mc)
     {
