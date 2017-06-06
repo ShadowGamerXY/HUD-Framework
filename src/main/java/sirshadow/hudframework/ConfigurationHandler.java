@@ -15,8 +15,10 @@ public class ConfigurationHandler {
     //Example hud positions
     public static float example_xPos,example_yPos;
 
-    //Example hud loceked
+    //Example hud locked
     public static boolean locked;
+
+    public static boolean showExampleHUD;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -31,6 +33,8 @@ public class ConfigurationHandler {
         example_yPos = config.getFloat("ExampleHUD yPosition",Configuration.CATEGORY_CLIENT,0,0,100,"");
 
         locked = config.getBoolean("is_example_hud_locked",Configuration.CATEGORY_GENERAL,false,"");
+
+        showExampleHUD = config.getBoolean("show_example_HUD",Configuration.CATEGORY_CLIENT,false,"");
 
         if (config.hasChanged()) {
             config.save();

@@ -48,6 +48,7 @@ public class ExampleHUD extends HUDElement implements IComponentHoveringText,ICo
         int x = (int)(xPos * scaled.getScaledWidth()) * 4;
         int y = (int)(yPos * scaled.getScaledHeight()) * 4;
 
+
         GL11.glScalef(1f/4f, 1f/4f, 1f/4f);
 
 
@@ -61,7 +62,7 @@ public class ExampleHUD extends HUDElement implements IComponentHoveringText,ICo
 
     @Override
     public boolean shouldRenderHUD(Minecraft mc) {
-        return true;
+        return ConfigurationHandler.showExampleHUD;
     }
 
     @Override
