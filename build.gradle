@@ -51,19 +51,6 @@ processResources {
     }
 }
 
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
-}
-
-
-tasks.build.dependsOn deobfJar
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allJava
@@ -74,14 +61,12 @@ task apiJar(type: Jar) {
     classifier = 'api'
     from sourceSets.api.output
 
-    // TODO: when FG bug is fixed, remove allJava from the api jar.
     // https://github.com/MinecraftForge/ForgeGradle/issues/369
     // Gradle should be able to pull them from the -sources jar.
     from sourceSets.main.allJava
 }
 
 artifacts {
-    archives javadocJar
     archives sourcesJar
     archives apiJar
 }
