@@ -17,10 +17,18 @@ import sirshadow.hudframework.client.hud.HUDRenderHelper;
  */
 @SideOnly(Side.CLIENT)
 public class ClientEventManager {
+
+
     private Minecraft mc = FMLClientHandler.instance().getClient();
+
+
     @SubscribeEvent
-    public void gameRender(RenderGameOverlayEvent.Post e) {
-        if (e.getType().equals(RenderGameOverlayEvent.ElementType.ALL)) {
+    public void gameRender(TickEvent.RenderTickEvent event) {
+        if (event.phase.equals(TickEvent.Phase.START))
+        {
+            return;
+        }else if ((mc.inGameHasFocus || mc.currentScreen == null) && !mc.gameSettings.showDebugInfo)
+        {
             if (!HUDRenderHelper.renderHUDElements(mc)) {
                 return;
             }
