@@ -14,6 +14,7 @@ public class HUDElement {
     public final int xSize;
     public final int ySize;
     private boolean locked = false;
+    private static boolean shouldFade = false;
 
     public static int zLevel = 0;
     /**
@@ -95,5 +96,13 @@ public class HUDElement {
 
     public String getUnlocalizedName(){
         return I18n.format("hudElement." + this.getName() + ".name");
+    }
+
+    public static boolean shouldFade() {
+        return shouldFade;
+    }
+
+    public static void setShouldFade(boolean fade) {
+       shouldFade = fade;
     }
 }
