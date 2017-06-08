@@ -14,7 +14,7 @@ public class HUDElement {
     public final int xSize;
     public final int ySize;
     private boolean locked = false;
-    private static boolean shouldFade = false;
+    private boolean shouldFade;
 
     public static int zLevel = 0;
     /**
@@ -54,6 +54,11 @@ public class HUDElement {
         return locked;
     }
 
+
+    /**
+     * Sets if the element is locked
+     * @param locked
+     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
@@ -98,11 +103,12 @@ public class HUDElement {
         return I18n.format("hudElement." + this.getName() + ".name");
     }
 
-    public static boolean shouldFade() {
+    public  boolean shouldFade() {
         return shouldFade;
     }
 
-    public static void setShouldFade(boolean fade) {
+    public  void setShouldFade(boolean fade) {
        shouldFade = fade;
     }
+
 }

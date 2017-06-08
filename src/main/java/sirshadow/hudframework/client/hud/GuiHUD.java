@@ -32,7 +32,6 @@ public class GuiHUD extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
         HUDRenderHelper.renderHUDElements(Minecraft.getMinecraft());
-        HUDElement.setShouldFade(false);
     }
 
     private int lastMouseX = 0;

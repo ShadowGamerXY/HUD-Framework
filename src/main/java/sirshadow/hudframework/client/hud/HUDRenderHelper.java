@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sirshadow.hudframework.ConfigurationHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class HUDRenderHelper
         for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
         {
             if (entry.getValue().shouldRenderHUD(mc)) {
+                entry.getValue().setShouldFade(ConfigurationHandler.shouldFade);
                 entry.getValue().renderHUD(mc);
             }
         }

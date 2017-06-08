@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sirshadow.hudframework.ConfigurationHandler;
+import sirshadow.hudframework.client.hud.GuiHUD;
 import sirshadow.hudframework.client.hud.HUDElement;
 
 import java.awt.*;
@@ -16,29 +18,30 @@ import java.awt.*;
 public class RenderUtil {
 
     /**
-     *
      * @param o an object that can be turned into a String. If the object CAN'T be turned into a string it will crash/cause problems
      * @param x xPos
      * @param y yPos
      * @param c set the color of the string
      */
-    public static void addObject(Object o, int x, int y, Color c){
-        Minecraft.getMinecraft().fontRendererObj.drawString(o.toString(),x,y, c.hashCode());
+    public static void addObject(Object o, int x, int y, Color c) {
+        Minecraft.getMinecraft().fontRendererObj.drawString(o.toString(), x, y, c.hashCode());
     }
 
     @SideOnly(Side.CLIENT)
-    public static void  drawTexturedModalRect(int x, int y, int xPixel, int yPixel, double sizeX, double sizeY)
-    {
+    public static void drawTexturedModalRect(int x, int y, int xPixel, int yPixel, double sizeX, double sizeY) {
         int zLevel = HUDElement.zLevel;
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.getInstance();
         VertexBuffer wr = tessellator.getBuffer();
         wr.begin(7, DefaultVertexFormats.POSITION_TEX);
-        wr.pos((double)(x + 0), (double)(y + sizeY), (double)zLevel).tex((double)((float)(xPixel + 0) * f), (double)((float)(yPixel + sizeY) * f1)).endVertex();
-        wr.pos((double)(x + sizeX), (double)(y + sizeY), (double)zLevel).tex((double)((float)(xPixel + sizeX) * f), (double)((float)(yPixel + sizeY) * f1)).endVertex();;
-        wr.pos((double)(x + sizeX), (double)(y + 0), (double)zLevel).tex((double)((float)(xPixel + sizeX) * f), (double)((float)(yPixel + 0) * f1)).endVertex();;
-        wr.pos((double)(x + 0), (double)(y + 0), (double)zLevel).tex((double)((float)(xPixel + 0) * f), (double)((float)(yPixel + 0) * f1)).endVertex();;
+        wr.pos((double) (x + 0), (double) (y + sizeY), (double) zLevel).tex((double) ((float) (xPixel + 0) * f), (double) ((float) (yPixel + sizeY) * f1)).endVertex();
+        wr.pos((double) (x + sizeX), (double) (y + sizeY), (double) zLevel).tex((double) ((float) (xPixel + sizeX) * f), (double) ((float) (yPixel + sizeY) * f1)).endVertex();
+        ;
+        wr.pos((double) (x + sizeX), (double) (y + 0), (double) zLevel).tex((double) ((float) (xPixel + sizeX) * f), (double) ((float) (yPixel + 0) * f1)).endVertex();
+        ;
+        wr.pos((double) (x + 0), (double) (y + 0), (double) zLevel).tex((double) ((float) (xPixel + 0) * f), (double) ((float) (yPixel + 0) * f1)).endVertex();
+        ;
         tessellator.draw();
     }
 }

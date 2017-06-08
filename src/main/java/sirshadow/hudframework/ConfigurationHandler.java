@@ -12,6 +12,11 @@ import java.io.File;
 public class ConfigurationHandler {
     public static Configuration config;
 
+    //Category
+    public static String HUD_ELEMENTS = "HUD Elements";
+
+    public static boolean shouldFade;
+
     //Example hud positions
     public static float example_xPos,example_yPos;
 
@@ -33,6 +38,8 @@ public class ConfigurationHandler {
         example_yPos = config.getFloat("ExampleHUD yPosition",Configuration.CATEGORY_CLIENT,0,0,100,"");
 
         locked = config.getBoolean("is_example_hud_locked",Configuration.CATEGORY_GENERAL,false,"");
+
+        shouldFade = config.getBoolean("should_fade", HUD_ELEMENTS,true,"Sets if HUD elements are allowed to fade");
 
         showExampleHUD = config.getBoolean("show_example_HUD",Configuration.CATEGORY_CLIENT,false,"");
 
