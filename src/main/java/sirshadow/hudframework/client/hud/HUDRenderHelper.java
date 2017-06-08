@@ -6,6 +6,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sirshadow.hudframework.ConfigurationHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,11 +27,12 @@ public class HUDRenderHelper
      */
     public static boolean renderHUDElements(Minecraft mc)
     {
-        for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
-        {
-            if (entry.getValue().shouldRenderHUD(mc)) {
-                entry.getValue().setShouldFade(ConfigurationHandler.shouldFade);
-                entry.getValue().renderHUD(mc);
+        for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet()) {
+            if (!entry.getValue().onBlacklist()) {
+                if (entry.getValue().shouldRenderHUD(mc)) {
+                    entry.getValue().setShouldFade(ConfigurationHandler.shouldFade);
+                    entry.getValue().renderHUD(mc);
+                }
             }
         }
 
@@ -46,8 +48,10 @@ public class HUDRenderHelper
     {
         for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
         {
-            if (entry.getValue().shouldUpdate()) {
-                entry.getValue().update();
+            if (!entry.getValue().onBlacklist()) {
+                if (entry.getValue().shouldUpdate()) {
+                    entry.getValue().update();
+                }
             }
         }
 

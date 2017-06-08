@@ -5,6 +5,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by sirshadow on 6/4/17.
@@ -22,6 +23,8 @@ public class ConfigurationHandler {
 
     //Example hud locked
     public static boolean locked;
+
+    public static String[] HUD_Blacklist;
 
     public static boolean showExampleHUD;
 
@@ -42,6 +45,9 @@ public class ConfigurationHandler {
         shouldFade = config.getBoolean("should_fade", HUD_ELEMENTS,true,"Sets if HUD elements are allowed to fade");
 
         showExampleHUD = config.getBoolean("show_example_HUD",Configuration.CATEGORY_CLIENT,false,"");
+
+
+        HUD_Blacklist = config.getStringList("hud_blacklist",HUD_ELEMENTS,new String[]{"hud_name_1","hud_name_2"},"Type the exact names of HUDs here to disable them");
 
         if (config.hasChanged()) {
             config.save();

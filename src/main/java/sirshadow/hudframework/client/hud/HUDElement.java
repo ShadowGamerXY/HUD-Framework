@@ -2,6 +2,7 @@ package sirshadow.hudframework.client.hud;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import sirshadow.hudframework.ConfigurationHandler;
 
 /**
  * Created by Shadow on 31.5.2017.
@@ -78,6 +79,15 @@ public class HUDElement {
         return name;
     }
 
+    public boolean onBlacklist(){
+        for (int i = 0;i < ConfigurationHandler.HUD_Blacklist.length;i++){
+            if (this.getName().equalsIgnoreCase(ConfigurationHandler.HUD_Blacklist[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * If you set this to false the HUD will not render
      * @param mc
@@ -103,6 +113,11 @@ public class HUDElement {
         return I18n.format("hudElement." + this.getName() + ".name");
     }
 
+    /**
+     * Note:There is no practical code for this, you have to write your own. Most that this get the original configs value if it can fade
+     * You are free to implement the fade effect anyway you want to
+     * @return if the element is allowed to fade;
+     */
     public  boolean shouldFade() {
         return shouldFade;
     }
