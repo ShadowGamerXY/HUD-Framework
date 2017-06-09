@@ -7,6 +7,7 @@ import net.minecraft.util.text.TextFormatting;
 import sirshadow.hudframework.client.hud.components.IComponentHoveringText;
 import sirshadow.hudframework.client.hud.components.IComponentTitle;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +26,22 @@ public class GuiHUD extends GuiContainer {
 
         HUDElement element = HUDRenderHelper.getElementAtCursor(mouseX, mouseY);
         if (element != null) {
-            this.renderToolTip(element, mouseX - x, mouseY - y);
+           // this.renderToolTip(element, mouseX - x, mouseY - y);
         }
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
+    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int mouseX, int mouseY) {
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
         HUDRenderHelper.renderHUDElements(Minecraft.getMinecraft());
+        HUDElement element = HUDRenderHelper.getElementAtCursor(mouseX, mouseY);
+        if (element != null) {
+           int x = (int) (element.xPos * scaledResolution.getScaledWidth());
+           int y = (int) (element.yPos * scaledResolution.getScaledHeight());
+
+           drawHorizontalLine(0, scaledResolution.getScaledWidth(), y + element.ySize / 8 - 1, Color.GRAY.hashCode());
+           drawVerticalLine(x + element.xSize / 8 - 1,0,scaledResolution.getScaledHeight(),Color.GRAY.hashCode());
+       }
     }
 
     private int lastMouseX = 0;
@@ -67,8 +77,8 @@ public class GuiHUD extends GuiContainer {
         if (lastButtonClicked == 0 && isElementTrapped && trappedElement != null) {
             if (!trappedElement.isLocked()) {
                 ScaledResolution scaled = new ScaledResolution(mc);
-                trappedElement.xPos = ((float) (mouseX - lastMouseX)) / (float) scaled.getScaledWidth() + trappedElement.xPos;
-                trappedElement.yPos = ((float) (mouseY - lastMouseY)) / (float) scaled.getScaledHeight() + trappedElement.yPos;
+                if(!isShiftKeyDown())trappedElement.xPos = ((float) (mouseX - lastMouseX)) / (float) scaled.getScaledWidth() + trappedElement.xPos;
+                if (!isCtrlKeyDown())trappedElement.yPos = ((float) (mouseY - lastMouseY)) / (float) scaled.getScaledHeight() + trappedElement.yPos;
                 lastMouseX = mouseX;
                 lastMouseY = mouseY;
 
