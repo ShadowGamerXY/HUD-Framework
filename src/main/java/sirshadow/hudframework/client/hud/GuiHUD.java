@@ -26,7 +26,7 @@ public class GuiHUD extends GuiContainer {
 
         HUDElement element = HUDRenderHelper.getElementAtCursor(mouseX, mouseY);
         if (element != null) {
-           // this.renderToolTip(element, mouseX - x, mouseY - y);
+           this.renderToolTip(element, mouseX - x, mouseY - y);
         }
     }
 
