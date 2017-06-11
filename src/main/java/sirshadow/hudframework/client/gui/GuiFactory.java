@@ -65,6 +65,7 @@ public class GuiFactory implements IModGuiFactory{
             //Add categories to config GUI
             list.add(categoryElement(Configuration.CATEGORY_GENERAL, "General", "Geneeral"));
             list.add(categoryElement(Configuration.CATEGORY_CLIENT, "Client", "Clieent"));
+            list.add(categoryElement(ConfigurationHandler.HUD_ELEMENTS,"HUD Elements","HUD Eleemnts"));
             return list;
         }
 

@@ -2,6 +2,7 @@ package sirshadow.hudframework.client.hud;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import sirshadow.hudframework.ConfigurationHandler;
 
 /**
  * Created by Shadow on 31.5.2017.
@@ -14,6 +15,7 @@ public class HUDElement {
     public final int xSize;
     public final int ySize;
     private boolean locked = false;
+    private boolean shouldFade;
 
     public static int zLevel = 0;
     /**
@@ -53,6 +55,11 @@ public class HUDElement {
         return locked;
     }
 
+
+    /**
+     * Sets if the element is locked
+     * @param locked
+     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
@@ -70,6 +77,15 @@ public class HUDElement {
      */
     public String getName() {
         return name;
+    }
+
+    public boolean onBlacklist(){
+        for (int i = 0;i < ConfigurationHandler.HUD_Blacklist.length;i++){
+            if (this.getName().equalsIgnoreCase(ConfigurationHandler.HUD_Blacklist[i])){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -95,5 +111,18 @@ public class HUDElement {
 
     public String getUnlocalizedName(){
         return I18n.format("hudElement." + this.getName() + ".name");
+    }
+
+    /**
+     * Note:There is no practical code for this, you have to write your own. Most that this get the original configs value if it can fade
+     * You are free to implement the fade effect anyway you want to
+     * @return if the element is allowed to fade;
+     */
+    public  boolean shouldFade() {
+        return shouldFade;
+    }
+
+    public  void setShouldFade(boolean fade) {
+       shouldFade = fade;
     }
 }

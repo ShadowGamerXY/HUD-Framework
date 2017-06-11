@@ -5,7 +5,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 import sirshadow.hudframework.ConfigurationHandler;
 import sirshadow.hudframework.ModLibrary;
@@ -43,11 +42,11 @@ public class ExampleHUD extends HUDElement implements IComponentHoveringText,ICo
     public void renderHUD(Minecraft mc) {
         ScaledResolution scaled = new ScaledResolution(mc);
 
+
         GL11.glPushMatrix();
 
         int x = (int)(xPos * scaled.getScaledWidth()) * 4;
         int y = (int)(yPos * scaled.getScaledHeight()) * 4;
-
 
         GL11.glScalef(1f/4f, 1f/4f, 1f/4f);
 
@@ -62,7 +61,7 @@ public class ExampleHUD extends HUDElement implements IComponentHoveringText,ICo
 
     @Override
     public boolean shouldRenderHUD(Minecraft mc) {
-        return ConfigurationHandler.showExampleHUD;
+        return true;
     }
 
     @Override

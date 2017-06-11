@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sirshadow.hudframework.ConfigurationHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,23 +13,24 @@ import java.util.Map;
  * Created by Shadow on 31.5.2017.
  */
 @SideOnly(Side.CLIENT)
-public class HUDRenderHelper
-{
+public class HUDRenderHelper {
     public static Map<String, HUDElement> hudElementsMap = new HashMap<String, HUDElement>();
     public static Minecraft mc = Minecraft.getMinecraft();
 
     /**
      * Call this when you want the HUD to render
      * It's called every render tick
+     *
      * @param mc minecft object
      * @return true
      */
-    public static boolean renderHUDElements(Minecraft mc)
-    {
-        for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
-        {
-            if (entry.getValue().shouldRenderHUD(mc)) {
-                entry.getValue().renderHUD(mc);
+    public static boolean renderHUDElements(Minecraft mc) {
+        for (Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet()) {
+            if (!entry.getValue().onBlacklist()) {
+                if (entry.getValue().shouldRenderHUD(mc)) {
+                    entry.getValue().setShouldFade(ConfigurationHandler.shouldFade);
+                    entry.getValue().renderHUD(mc);
+                }
             }
         }
 
@@ -44,8 +46,10 @@ public class HUDRenderHelper
     {
         for(Map.Entry<String, HUDElement> entry : hudElementsMap.entrySet())
         {
-            if (entry.getValue().shouldUpdate()) {
-                entry.getValue().update();
+            if (!entry.getValue().onBlacklist()) {
+                if (entry.getValue().shouldUpdate()) {
+                    entry.getValue().update();
+                }
             }
         }
 
