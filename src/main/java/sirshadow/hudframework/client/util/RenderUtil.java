@@ -35,9 +35,7 @@ public class RenderUtil {
         wr.begin(7, DefaultVertexFormats.POSITION_TEX);
         wr.pos((double) (x + 0), (double) (y + sizeY), (double) zLevel).tex((double) ((float) (xPixel + 0) * f), (double) ((float) (yPixel + sizeY) * f1)).endVertex();
         wr.pos((double) (x + sizeX), (double) (y + sizeY), (double) zLevel).tex((double) ((float) (xPixel + sizeX) * f), (double) ((float) (yPixel + sizeY) * f1)).endVertex();
-        ;
         wr.pos((double) (x + sizeX), (double) (y + 0), (double) zLevel).tex((double) ((float) (xPixel + sizeX) * f), (double) ((float) (yPixel + 0) * f1)).endVertex();
-        ;
         wr.pos((double) (x + 0), (double) (y + 0), (double) zLevel).tex((double) ((float) (xPixel + 0) * f), (double) ((float) (yPixel + 0) * f1)).endVertex();
         ;
         tessellator.draw();
